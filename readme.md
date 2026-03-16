@@ -61,7 +61,7 @@ finance-ai-agent/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/finance-ai-agent.git
+git clone https://github.com/Tharun-02/Clarity-finance-ai-agent.git
 cd finance-ai-agent
 ```
 
