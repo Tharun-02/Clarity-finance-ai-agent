@@ -25,10 +25,27 @@ def parse_txt_with_ai(content: str):
     response = ollama.chat(
         model="llama3.2",
         messages=[{"role": "user", "content": prompt}],
-        options={"temperature": 0, "num_predict": 2000} 
+        options={"temperature": 0, "num_predict": 4000} 
     )
 
     raw = response['message']['content']
+
+    start = raw.find('[')
+    end = raw.rfind(']') + 1
+
+    if start == -1:
+        return []
+    
+    # If ] is missing, add it to close the array
+    if end == 0:
+        raw = raw + "]"
+        end = len(raw)
+
+    try:
+        return json.loads(raw[start:end])
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON parse error: {e}")
+        return []
 
      # ADD THIS to see what the AI actually returned
     print("=== RAW AI RESPONSE ===")
